@@ -6,5 +6,3 @@
      ansible.windows.win_powershell:
        script: |
          get-website | ForEach-Object {$env:computername + " | " + $_.Name + " | " + $_.PhysicalPath + " | " + $_.state}
-~
-~
