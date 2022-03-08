@@ -1,9 +1,10 @@
+
 ---
-- name: Run powershell script
-  hosts: all
-  gather_facts: false
+- hosts: all
   tasks:
-   - name: Run basic PowerShell script
-    ansible.windows.win_powershell:
-     script: |
-        Get-Website
+   - name: test module
+     ansible.windows.win_powershell:
+       script: |
+         get-website | ForEach-Object {$env:computername + " | " + $_.Name + " | " + $_.PhysicalPath + " | " + $_.state}
+~
+~
