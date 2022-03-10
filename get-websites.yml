@@ -4,5 +4,7 @@
    - name: test module
      ansible.windows.win_powershell:
        script: |
-         $out = get-website | ForEach-Object {$env:computername + " | " + $_.Name + " | " + $_.PhysicalPath + " | " + $_.state}
-         Write-Output $out
+         get-website | ForEach-Object {$env:computername + " | " + $_.Name + " | " + $_.PhysicalPath + " | " + $_.state}
+      
+   - debug:
+        var: script_result.stdout_lines
