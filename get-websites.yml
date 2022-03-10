@@ -8,6 +8,6 @@
      register: hello
      
    - name: Retrieve the input based on stdin
-  ansible.windows.win_shell: '$string = [Console]::In.ReadToEnd(); Write-Output $string.Trim()'
-  args:
-    stdin: Input message
+     ansible.windows.win_shell: '$string = [Console]::In.ReadToEnd(); Write-Output $string.Trim()'
+     args:
+       stdin: Input message
