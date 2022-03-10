@@ -2,8 +2,7 @@
 - hosts: all
   tasks:
    - name: test module
-     ansible.windows.win_shell:
-       script: |
+     ansible.windows.win_shell: |
          get-website | ForEach-Object {$env:computername + " | " + $_.Name + " | " + $_.PhysicalPath + " | " + $_.state}
      register: hello
      
