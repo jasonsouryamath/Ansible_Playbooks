@@ -7,6 +7,6 @@
          get-website | ForEach-Object {$env:computername + " | " + $_.Name + " | " + $_.PhysicalPath + " | " + $_.state}
      register: hello
      
-- debug: msg="{{ hello.stdout }}"
+- debug: msg= "{{ hello.stdout }}"
 
-- debug: msg="{{ hello.stderr }}"
+- debug: msg= "{{ hello.stderr }}"
