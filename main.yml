@@ -1,0 +1,26 @@
+- name: Ensure SDK base directory exists
+  win_file:
+    path: "{{ sdk_dir }}"
+    state: directory
+
+- name: Download SDK MSI if not already present
+  win_get_url:
+    url: "{{ sdk_url }}"
+    dest: "{{ sdk_msi_path }}"
+    force: no
+
+- name: Unblock the downloaded MSI to bypass SmartScreen
+  win_command: powershell.exe -Command "Unblock-File -Path '{{ sdk_msi_path }}'"
+  args:
+    removes: "{{ sdk_extract_path }}"
+
+- name: Extract MSI contents using msiexec
+  win_command: >
+    msiexec.exe /a "{{ sdk_msi_path }}" /qn TARGETDIR="{{ sdk_extract_path }}"
+  args:
+    creates: "{{ sdk_extract_path }}"
+
+- name: Upload SDK to GCS buckets for each environment
+  win_command: >
+    gsutil -m cp -r "{{ sdk_extract_path }}" "gs://clgx-ccom-encompass-sdk-{{ item }}"
+  loop: "{{ envs }}"
