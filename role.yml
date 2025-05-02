@@ -1,0 +1,13 @@
+sdk_url: "https://help.icemortgagetechnology.com/documentation/encompass/Content/encompass/release_notes/sdk-installs.htm?Highlight=sdk%20installation"
+sdk_dir: "C:\\Temp\\SDK"
+sdk_filename: "encompass25200sdk.msi"
+sdk_version: "25.2.0"
+sdk_msi_path: "{{ sdk_dir }}\\{{ sdk_filename }}"
+sdk_extract_path: "{{ sdk_dir }}\\{{ sdk_version }}"
+envs:
+  - dev
+  - int
+  - uat
+  - sit
+  - prf
+  - reg
